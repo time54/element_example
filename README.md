@@ -6,4 +6,5 @@
     npm install sass-loader --save-dev
 
 # 2、示例
-  # el-date-picker： 默认日期设置
+  # DateTimePicker组件
+  #   el-date-picker： 默认日期设置

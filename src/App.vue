@@ -1,62 +1,20 @@
 <template>
   <div id="app">
-    <div class="example">
-      <div class="module-item">
-        <span style="margin-right: 40px;">日期选择器:</span>
-        <el-date-picker 
-          v-model="dateVals" 
-          type="daterange" 
-          value-format="yyyy-MM-dd"
-          range-separator="-" 
-          start-placeholder="开始日期" 
-          end-placeholder="结束日期">
-        </el-date-picker>
-      </div>
-    </div>
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <!--路由出口-->
+    <router-view class="view"/>
   </div>
 </template>
-
-<script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'app',
-  data() {
-    return {
-      dateVals: ''
-    }
-  },
-  methods: {
-    defaultDate(){ //设置默认日期
-      let date = new Date();
-      let year = date.getFullYear().toString();
-      let month = date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1).toString():(date.getMonth()+1).toString();
-      let da = date.getDate() < 10 ? '0'+date.getDate().toString():date.getDate().toString();
-      let beg = year + '-' + month + '-01';
-      let end = year + '-' + month + '-' + da;
-      this.dateVals = [beg,end];
-    }
-  },
-  components: {
-    HelloWorld
-  },
-  created() {
-    this.defaultDate();
-  }
-}
-</script>
 
 <style lang="scss" scoped>
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
+    width: 100%;
+    height: 100%;
   }
-  .example{
-    display: flex;
+  .view{
+    width: 100%;
+    height: 100%;
   }
 </style>
