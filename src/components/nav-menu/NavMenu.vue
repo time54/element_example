@@ -13,17 +13,22 @@
       :collapse="isCollapse" 
       >
       <div class="head">
-        <!-- <img src="./images/logo.svg" alt="投顾管理后台"> -->
         <img src="./images/water.png" alt="投顾管理后台"> 
       </div>
       <template v-for="(item,idx) in currentRouter" >
-        <el-submenu index="item.path" :key="idx" v-if="item.children">
+        <!--没有二级子目录 :index 路由中的path-->
+        <el-menu-item :index="'/home/' + item.path" :key="idx" v-if="!item.children">
+          <i :class="item.icon"></i>
+          <span slot="title">{{item.name}}</span>
+        </el-menu-item>
+        <!--有二级子目录-->
+        <el-submenu index="item.path" :key="idx" v-else>
           <template slot="title">
             <i :class="item.icon"></i>
             <span slot="title">{{item.name}}</span>
           </template>
           <el-menu-item-group v-for="(son) in item.children" :key="son.path">
-            <el-menu-item :index="item.path + son.path" >{{son.name}}</el-menu-item>
+            <el-menu-item :index="'/home/' + item.path + son.path" >{{son.name}}</el-menu-item>
           </el-menu-item-group>
           <!-- <el-menu-item-group title="分组2">
             <el-menu-item index="1-3">选项3</el-menu-item>
@@ -33,10 +38,7 @@
             <el-menu-item index="1-4-1">选项1</el-menu-item>
           </el-submenu> -->
         </el-submenu>
-        <el-menu-item :index="'/home/' + item.path" :key="idx" v-else>
-          <i :class="item.icon"></i>
-          <span slot="title">{{item.name}}</span>
-        </el-menu-item>
+
       </template>
     </el-menu>
   </div>
@@ -60,9 +62,9 @@
       }
     },
     created() {
-      console.log(this.$router);
       let routes = JSON.parse(JSON.stringify(this.$router.options.routes[1].children));
       this.currentRouter = routes;
+      console.log(this.currentRouter);
     }
   }
 
