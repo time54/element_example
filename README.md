@@ -5,6 +5,7 @@
     npm install node-sass --save-dev
     npm install sass-loader --save-dev
 
-# 2、示例
+# 2、组件
+  # NavMenu： 导航菜单
   # DateTimePicker组件
   #   el-date-picker： 默认日期设置
